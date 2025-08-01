@@ -17,7 +17,7 @@ const handleSubmit = (e) =>{
 // add thinking message to chat history
   setTimeout(() => {
     setChatHistory(history=>[...history,{role:"model",text:'Thinking......'}])
-      generateBotResponse([...chatHistory,{role:"user",text:userMessage}])
+      generateBotResponse([...chatHistory,{role:"user",text:`using the detaails provided above ,please address this query:${userMessage}`}])
   }, 600)
 
 

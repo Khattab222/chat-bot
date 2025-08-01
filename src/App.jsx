@@ -4,18 +4,19 @@ import {  Bot, ChevronDown, MessageSquare, X } from 'lucide-react'
 import ChatForm from './components/ChatForm'
 import { useEffect, useRef, useState } from 'react'
 import ChatMessage from './components/ChatMessage'
+import companyInfo from '../src/assets/companyInfo.json'
 import './App.css'
 
 function App() {
-  const [chatHistory, setChatHistory] = useState([{role:"model",text:"Hello, how can I help you?"}])
+  const [chatHistory, setChatHistory] = useState([{hideInChat:true, role:"model",text: `You are a helpful assistant for the following company:\n${JSON.stringify(companyInfo, null, 2)}`}])
   const [showChatBot, setShowChatBot] = useState(false)
   const chatBodyRef = useRef(null);
 
     const generateBotResponse = async (history)=>{
       // Function to update chat history with the bot's response
       // This function will be called after the bot processes the user's message
-      const updateHistory = (text)=>{
-        setChatHistory(prevHistory=>[...prevHistory.filter(msg=>msg.text !=="Thinking......"),{role:"model",text}])
+      const updateHistory = (text,isError=false)=>{
+        setChatHistory(prevHistory=>[...prevHistory.filter(msg=>msg.text !=="Thinking......"),{role:"model",text,isError}])
       }
 
 
@@ -33,11 +34,13 @@ function App() {
       try {
         const response = await fetch(import.meta.env.VITE_API_URL, requestOptions);
         const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.error.message || 'Failed to fetch response');
+        }
         const apiResponseText = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g,"$1").trim();
       updateHistory(apiResponseText)
       } catch (error) {
-        console.error('Error:', error);
-        return null;
+      updateHistory(error.message,true)
       }
     };
 
@@ -74,6 +77,10 @@ function App() {
 
         {/* chat body */}
         <div ref={chatBodyRef} className='chat-body'>
+          <div className={`message bot-message`}>
+              <Bot color='#6d4fc2' size={20} />
+                <p className='message-text'>hey how can i help you !</p>
+              </div>
     
     {
       chatHistory.map((chat,i)=>{

@@ -101,7 +101,13 @@ align-items: center;
 gap: 10px;
 }
 
-
+.chat-body .message.error{
+  background-color: #ffcccc;
+  color: #d8000c;
+  border-radius: 13px;
+  padding: 10px;
+  font-size: 0.9rem;
+}
 .chat-body .message .message-text{
   padding:10px 16px;
   max-width: 75%;
@@ -216,4 +222,4 @@ gap: 10px;
     border-radius: 0;
     height: 100%;
     max-height: none;
-  }
+  }}

@@ -1,0 +1,42 @@
+{
+  "id": "cmp-001",
+  "name": "Acme Marketplace",
+  "founded": "2015-08-12",
+  "headquarters": {
+    "street": "123 Main St",
+    "city": "Springfield",
+    "state": "IL",
+    "zip": "62701",
+    "country": "USA"
+  },
+  "ceo": "Jane Doe",
+  "categories": [
+    "Electronics",
+    "Home & Garden",
+    "Toys",
+    "Sports"
+  ],
+  "topSellers": [
+    {
+      "sku": "ELEC-1001",
+      "name": "Noise-Cancelling Headphones",
+      "price": 199.99,
+      "rating": 4.7
+    },
+    {
+      "sku": "TOY-305",
+      "name": "Remote Control Car",
+      "price": 49.5,
+      "rating": 4.4
+    }
+  ],
+  "contact": {
+    "email": "support@acmemarket.com",
+    "phone": "+1-800-555-1234"
+  },
+  "social": {
+    "twitter": "@acmemarket",
+    "facebook": "facebook.com/acmemarketplace"
+  },
+  "about": "Acme Marketplace is your one-stop shop for quality electronics, home goods, toys, and more. Founded in 2015, we pride ourselves on fast shipping, 24/7 support, and a robust seller community."
+}
